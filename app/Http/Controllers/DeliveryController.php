@@ -53,9 +53,11 @@ class DeliveryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'client_id' => 'required|integer',
-            'collect_point_id' => 'required|integer',
-            'destination_point_id' => 'required|integer',
+            'client_id' => 'required|integer|exists:clients,id',
+            'collect_point_id' => 'required|integer|exists:points,id',
+            'destination_point_id' => 'required|integer|exists:points,id',
+            'status' => 'required|integer',
+            'deliveryman_id' => 'integer|nullable|exists:deliverymen,id',
         ]);
 
         if (!$validated) {
@@ -64,6 +66,8 @@ class DeliveryController extends Controller
                 'errors' => $validated->errors()
             ], 400);
         }
+
+        $validated['status'] = Delivery::getStatusByIndex($validated['status']);
 
         $delivery = Delivery::create($validated);
 
@@ -81,11 +85,11 @@ class DeliveryController extends Controller
         }
 
         $validated = $request->validate([
-            'client_id' => 'required|integer',
-            'collect_point_id' => 'required|integer',
-            'destination_point_id' => 'required|integer',
-            'status' => 'integer',
-            'deliveryman_id' => 'integer',
+            'client_id' => 'required|integer|exists:clients,id',
+            'collect_point_id' => 'required|integer|exists:points,id',
+            'destination_point_id' => 'required|integer|exists:points,id',
+            'status' => 'required|integer',
+            'deliveryman_id' => 'integer|nullable|exists:deliverymen,id',
         ]);
 
         if (!$validated) {
