@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\FilterAndOrder;
+use Carbon\Carbon;
 
 class Delivery extends Authenticatable
 {
@@ -109,10 +110,12 @@ class Delivery extends Authenticatable
                 });
                 break;
             case 'date_start':
-                return $array->where('updated_at', '>=', $value);
+                $date =  Carbon::createFromFormat('Y-m-d', $value)->hour(0)->minute(0)->second(0)->toDateTimeString();
+                return $array->where('updated_at', '>=', $date);
                 break;
             case 'date_end':
-                return $array->where('updated_at', '<=', $value);
+                $date =  Carbon::createFromFormat('Y-m-d', $value)->hour(23)->minute(59)->second(59)->toDateTimeString();
+                return $array->where('updated_at', '<=', $date);
                 break;
         }
     }
