@@ -21,8 +21,8 @@ class Deliveryman extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'current_latitude',
-        'current_longitude',
+        'latitude',
+        'longitude',
     ];
 
 }

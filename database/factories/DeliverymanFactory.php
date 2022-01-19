@@ -16,8 +16,8 @@ class DeliverymanFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'current_latitude' => $this->faker->latitude(),
-            'current_longitude' => $this->faker->longitude(),
+            'latitude' => $this->faker->latitude(),
+            'longitude' => $this->faker->longitude(),
         ];
     }
 

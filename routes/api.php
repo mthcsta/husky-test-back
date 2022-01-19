@@ -38,18 +38,18 @@ Route::get('/clients', function() {
 */
 
 Route::get('/deliveries', [DeliveryController::class, 'index']);
-Route::get('/deliveries/{id}', [DeliveryController::class, 'show']);
-Route::post('/deliveries', [DeliveryController::class, 'store']);
-Route::put('/deliveries/{id}', [DeliveryController::class, 'update']);
-Route::delete('/deliveries/{id}', [DeliveryController::class, 'destroy']);
+Route::get('/delivery/{id}', [DeliveryController::class, 'show']);
+Route::post('/delivery', [DeliveryController::class, 'store']);
+Route::put('/delivery/{id}', [DeliveryController::class, 'update']);
+Route::delete('/delivery/{id}', [DeliveryController::class, 'destroy']);
 
 Route::get('/clients', [ClientController::class, 'index']);
-Route::get('/clients/{id}', [ClientController::class, 'show']);
-Route::post('/clients', [ClientController::class, 'store']);
+Route::get('/client/{id}', [ClientController::class, 'show']);
+Route::post('/client', [ClientController::class, 'store']);
 
 Route::get('/points', [PointController::class, 'index']);
-Route::post('/points', [PointController::class, 'store']);
+Route::post('/point', [PointController::class, 'store']);
 
 Route::get('/deliverymen', [DeliverymanController::class, 'index']);
-Route::post('/deliverymen', [DeliverymanController::class, 'store']);
-Route::get('/deliverymen-next/{lat}/{long}', [DeliverymanController::class, 'showNext']);
+Route::post('/deliveryman', [DeliverymanController::class, 'store']);
+Route::get('/deliverymen-nearby/{lat}/{long}', [DeliverymanController::class, 'showNearby']);

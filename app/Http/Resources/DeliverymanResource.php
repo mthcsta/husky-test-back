@@ -12,8 +12,8 @@ class DeliverymanResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'current_longitude' => $this->current_longitude,
-            'current_latitude' => $this->current_latitude,
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
         ];
     }
 }

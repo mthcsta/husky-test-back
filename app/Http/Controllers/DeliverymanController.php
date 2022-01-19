@@ -51,8 +51,8 @@ class DeliverymanController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
-            'current_latitude' => 'required|numeric',
-            'current_longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ]);
 
         if (!$validated) {
@@ -71,10 +71,10 @@ class DeliverymanController extends Controller
 
     }
 
-    public function showNext($lat, $long)
+    public function showNearby($lat, $long)
     {
         $deliveryman = Deliveryman::select('*')
-            ->selectRaw("(abs(current_latitude - ".$lat.") + abs(current_longitude - ".$long.")) as dst")
+            ->selectRaw("(abs(latitude - ".$lat.") + abs(longitude - ".$long.")) as dst")
             ->orderBy('dst', 'asc')
             ->take(10)
             ->get();

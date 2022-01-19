@@ -16,8 +16,8 @@ class CreateDeliverymenTable extends Migration
         Schema::create('deliverymen', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->decimal('current_latitude', 11, 8);
-            $table->decimal('current_longitude', 11, 8);
+            $table->decimal('latitude', 11, 8);
+            $table->decimal('longitude', 11, 8);
             $table->timestamps();
             $table->softDeletes();
         });
